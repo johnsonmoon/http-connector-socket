@@ -6,6 +6,11 @@ import org.slf4j.LoggerFactory;
 import java.io.OutputStream;
 
 /**
+ * Request body in plain text form.
+ * <pre>
+ *     text/plain
+ * </pre>
+ *
  * Create by xuyh at 2020/5/28 17:03.
  */
 public class PlainTextBody implements Body {
@@ -17,10 +22,17 @@ public class PlainTextBody implements Body {
     public PlainTextBody() {
     }
 
+    /**
+     * @param text text body content
+     */
     public PlainTextBody(String text) {
         this.text = text;
     }
 
+    /**
+     * @param text text body content
+     * @param charset charset to encoding request body
+     */
     public PlainTextBody(String text, String charset) {
         this.text = text;
         this.charset = charset;

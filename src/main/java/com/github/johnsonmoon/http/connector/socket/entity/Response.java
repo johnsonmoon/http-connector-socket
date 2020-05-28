@@ -16,9 +16,19 @@ import java.util.Map;
  */
 public class Response implements Closeable {
     private static Logger logger = LoggerFactory.getLogger(Response.class);
+    /**
+     * Response status.
+     */
     private int status;
+    /**
+     * Response message when status is not 200/OK.
+     */
     private String message;
+    /**
+     * Response headers.
+     */
     private Map<String, String> headers;
+
     private Socket source;
     private OutputStream outputStream;
     private InputStream inputStream;
@@ -59,12 +69,32 @@ public class Response implements Closeable {
         this.source = source;
     }
 
+    /**
+     * Get response content as input stream.
+     *
+     * @return {@link java.io.InputStream}
+     */
     public InputStream getResponseAsInputStream() {
         return inputStream;
     }
 
+    /**
+     * Get response content as string.
+     *
+     * @return {@link String}
+     */
     public String getResponseAsString() {
-        String resp = StreamUtils.toString(inputStream);
+        return getResponseAsString("UTF-8");
+    }
+
+    /**
+     * Get response content as string.
+     *
+     * @param charset response content encoding
+     * @return {@link String}
+     */
+    public String getResponseAsString(String charset) {
+        String resp = StreamUtils.toString(inputStream, charset);
         try {
             close();
         } catch (Exception e) {
@@ -73,6 +103,11 @@ public class Response implements Closeable {
         return resp;
     }
 
+    /**
+     * Get response content as byte array.
+     *
+     * @return byte array
+     */
     public byte[] getResponseAsBytes() {
         byte[] bytes = StreamUtils.toBytes(inputStream);
         try {
@@ -83,6 +118,11 @@ public class Response implements Closeable {
         return bytes;
     }
 
+    /**
+     * Close current response and related resources.
+     *
+     * @throws IOException
+     */
     @Override
     public void close() throws IOException {
         if (outputStream != null) {

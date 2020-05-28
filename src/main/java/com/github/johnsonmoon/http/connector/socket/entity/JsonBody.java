@@ -6,6 +6,11 @@ import org.slf4j.LoggerFactory;
 import java.io.OutputStream;
 
 /**
+ * Request body in json format.
+ * <pre>
+ *     application/json
+ * </pre>
+ * <p>
  * Create by xuyh at 2020/5/28 16:50.
  */
 public class JsonBody implements Body {
@@ -17,10 +22,17 @@ public class JsonBody implements Body {
     public JsonBody() {
     }
 
+    /**
+     * @param jsonStr json text body content
+     */
     public JsonBody(String jsonStr) {
         this.jsonStr = jsonStr;
     }
 
+    /**
+     * @param jsonStr json text body content
+     * @param charset charset to encoding request body
+     */
     public JsonBody(String jsonStr, String charset) {
         this.jsonStr = jsonStr;
         this.charset = charset;

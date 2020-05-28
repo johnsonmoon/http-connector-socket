@@ -112,7 +112,7 @@ public class StreamUtils {
         return headers;
     }
 
-    public static String toString(InputStream inputStream) {
+    public static String toString(InputStream inputStream, String charset) {
         ByteArrayOutputStream byteArrayOutputStream = null;
         try {
             byteArrayOutputStream = new ByteArrayOutputStream();
@@ -121,7 +121,7 @@ public class StreamUtils {
             while ((length = inputStream.read(buffer)) > 0) {
                 byteArrayOutputStream.write(buffer, 0, length);
             }
-            return new String(byteArrayOutputStream.toByteArray(), UTF_8);
+            return new String(byteArrayOutputStream.toByteArray(), charset);
         } catch (Exception e) {
             logger.warn(e.getMessage(), e);
         } finally {

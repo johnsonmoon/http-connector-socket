@@ -48,7 +48,7 @@ public class SocketHttpTest {
             }
             Map<String, List<String>> headers = StreamUtils.readHeaders(inputStream);
             inputStream = StreamUtils.wrapInputStream(headers, inputStream);
-            return StreamUtils.toString(inputStream);
+            return StreamUtils.toString(inputStream, "UTF-8");
         } catch (Exception e) {
             logger.warn(e.getMessage(), e);
         } finally {
@@ -92,7 +92,7 @@ public class SocketHttpTest {
             }
             Map<String, List<String>> headers = StreamUtils.readHeaders(inputStream);
             inputStream = StreamUtils.wrapInputStream(headers, inputStream);
-            return StreamUtils.toString(inputStream);
+            return StreamUtils.toString(inputStream, "UTF-8");
         } catch (IOException e) {
             logger.warn(e.getMessage(), e);
         } finally {

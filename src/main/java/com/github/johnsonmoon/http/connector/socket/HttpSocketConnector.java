@@ -16,18 +16,26 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Http connector implement by socket.
+ * <p>
  * Create by xuyh at 2020/5/27 10:55.
  */
 public class HttpSocketConnector {
     private static Logger logger = LoggerFactory.getLogger(HttpSocketConnector.class);
 
+    /**
+     * Connect to service with request and return as response.
+     *
+     * @param request {@link Request}
+     * @return {@link Response}
+     */
     public static Response connect(Request request) {
         Method method = request.getMethod();
         String url = request.getUrl();
         UrlUtils.HostPort hostPort = UrlUtils.getHostPortUrlFromUrl(url);
         Socket socket;
         InputStream inputStream;
-        OutputStream outputStream = null;
+        OutputStream outputStream;
         Response response = new Response();
         try {
             SocketAddress socketAddress = new InetSocketAddress(hostPort.getHost(), hostPort.getPort());

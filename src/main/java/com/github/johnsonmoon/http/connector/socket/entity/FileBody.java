@@ -8,6 +8,11 @@ import java.io.FileInputStream;
 import java.io.OutputStream;
 
 /**
+ * Request body in file format.
+ * <pre>
+ *     application/octet-stream
+ * </pre>
+ * <p>
  * Create by xuyh at 2020/5/28 17:09.
  */
 public class FileBody implements Body {
@@ -18,10 +23,16 @@ public class FileBody implements Body {
     public FileBody() {
     }
 
+    /**
+     * @param file {@link File}
+     */
     public FileBody(File file) {
         this.file = file;
     }
 
+    /**
+     * @param path Absolute file path name.
+     */
     public FileBody(String path) {
         this.file = new File(path);
     }
