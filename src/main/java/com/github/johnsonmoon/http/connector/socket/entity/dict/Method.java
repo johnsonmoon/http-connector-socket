@@ -1,4 +1,4 @@
-package com.github.johnsonmoon.http.connector.socket.entity;
+package com.github.johnsonmoon.http.connector.socket.entity.dict;
 
 /**
  * Create by xuyh at 2020/5/28 14:44.

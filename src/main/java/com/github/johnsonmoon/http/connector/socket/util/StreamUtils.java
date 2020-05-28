@@ -36,8 +36,15 @@ public class StreamUtils {
     }
 
     public static int responseCode(String line) {
-        //TODO
-        return 200;
+        String[] splits = line.split(" ");
+        for (String split : splits) {
+            try {
+                return Integer.parseInt(split);
+            } catch (Exception e) {
+                //do nothing
+            }
+        }
+        return 500;
     }
 
     public static String readLine(InputStream inputStream) {

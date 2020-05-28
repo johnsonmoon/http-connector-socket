@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ public class Response implements Closeable {
     private String message;
     private Map<String, String> headers;
     private Socket source;
+    private OutputStream outputStream;
     private InputStream inputStream;
 
     public int getStatus() {
@@ -47,6 +49,10 @@ public class Response implements Closeable {
 
     public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
+    }
+
+    public void setOutputStream(OutputStream outputStream) {
+        this.outputStream = outputStream;
     }
 
     public void setSource(Socket source) {
@@ -79,6 +85,9 @@ public class Response implements Closeable {
 
     @Override
     public void close() throws IOException {
+        if (outputStream != null) {
+            outputStream.close();
+        }
         if (inputStream != null) {
             inputStream.close();
         }

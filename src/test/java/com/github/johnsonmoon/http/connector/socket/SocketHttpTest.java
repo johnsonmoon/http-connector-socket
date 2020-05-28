@@ -20,10 +20,6 @@ import java.util.Map;
 public class SocketHttpTest {
     private static Logger logger = LoggerFactory.getLogger(SocketHttpTest.class);
 
-    public static void main(String[] args) {
-        // TODO
-    }
-
     public static String get(String url) {
         UrlUtils.HostPort hostPort = UrlUtils.getHostPortUrlFromUrl(url);
         return get(hostPort.getHost(), hostPort.getPort(), hostPort.getUrl());

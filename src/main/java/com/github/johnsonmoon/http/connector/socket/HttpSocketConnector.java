@@ -1,6 +1,6 @@
 package com.github.johnsonmoon.http.connector.socket;
 
-import com.github.johnsonmoon.http.connector.socket.entity.Method;
+import com.github.johnsonmoon.http.connector.socket.entity.dict.Method;
 import com.github.johnsonmoon.http.connector.socket.entity.Request;
 import com.github.johnsonmoon.http.connector.socket.entity.Response;
 import com.github.johnsonmoon.http.connector.socket.util.StreamUtils;
@@ -32,7 +32,6 @@ public class HttpSocketConnector {
         try {
             SocketAddress socketAddress = new InetSocketAddress(hostPort.getHost(), hostPort.getPort());
             socket = new Socket();
-            response.setSource(socket);
             socket.connect(socketAddress, request.getConnectTimeout());
             socket.setSoTimeout(request.getSocketTimeout());
             outputStream = socket.getOutputStream();
@@ -48,17 +47,11 @@ public class HttpSocketConnector {
             response.setHeaders(StreamUtils.convertHeaders(responseHeaders));
             inputStream = StreamUtils.wrapInputStream(responseHeaders, inputStream);
             response.setInputStream(inputStream);
+            response.setOutputStream(outputStream);
+            response.setSource(socket);
         } catch (Exception e) {
             logger.warn(e.getMessage(), e);
             response.setMessage(e.getMessage());
-        } finally {
-            if (outputStream != null) {
-                try {
-                    outputStream.close();
-                } catch (Exception e) {
-                    logger.warn(e.getMessage(), e);
-                }
-            }
         }
         return response;
     }

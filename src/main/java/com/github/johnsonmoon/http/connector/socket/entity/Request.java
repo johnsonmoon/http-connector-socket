@@ -1,5 +1,7 @@
 package com.github.johnsonmoon.http.connector.socket.entity;
 
+import com.github.johnsonmoon.http.connector.socket.entity.dict.Method;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +16,10 @@ public class Request {
     private int socketTimeout = 30000;
     private Map<String, String> headers;
     private Body body;
+
+    public static Request create() {
+        return new Request();
+    }
 
     public Request get() {
         this.method = Method.GET;
