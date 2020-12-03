@@ -162,6 +162,33 @@ public class StreamUtils {
 
     public static InputStream wrapInputStream(Map<String, List<String>> headers, InputStream inputStream) {
         List<String> transferEncodingList = headers.get("Transfer-Encoding");
+        if (transferEncodingList == null || transferEncodingList.isEmpty()) {
+            transferEncodingList = headers.get("transfer-encoding");
+        }
+        if (transferEncodingList == null || transferEncodingList.isEmpty()) {
+            transferEncodingList = headers.get("Transfer_Encoding");
+        }
+        if (transferEncodingList == null || transferEncodingList.isEmpty()) {
+            transferEncodingList = headers.get("transfer_encoding");
+        }
+        if (transferEncodingList == null || transferEncodingList.isEmpty()) {
+            transferEncodingList = headers.get("TransferEncoding");
+        }
+        if (transferEncodingList == null || transferEncodingList.isEmpty()) {
+            transferEncodingList = headers.get("transferencoding");
+        }
+        if (transferEncodingList == null || transferEncodingList.isEmpty()) {
+            transferEncodingList = headers.get("transferEncoding");
+        }
+        if (transferEncodingList == null || transferEncodingList.isEmpty()) {
+            transferEncodingList = headers.get("TRANSFERENCODING");
+        }
+        if (transferEncodingList == null || transferEncodingList.isEmpty()) {
+            transferEncodingList = headers.get("TRANSFER-ENCODING");
+        }
+        if (transferEncodingList == null || transferEncodingList.isEmpty()) {
+            transferEncodingList = headers.get("TRANSFER_ENCODING");
+        }
         if (transferEncodingList != null && !transferEncodingList.isEmpty()) {
             String encodings = transferEncodingList.get(0);
             String[] elements = encodings.split(";");
@@ -173,6 +200,33 @@ public class StreamUtils {
             }
         }
         List<String> contentLengthList = headers.get("Content-Length");
+        if (contentLengthList == null || contentLengthList.isEmpty()) {
+            contentLengthList = headers.get("content-length");
+        }
+        if (contentLengthList == null || contentLengthList.isEmpty()) {
+            contentLengthList = headers.get("Content_Length");
+        }
+        if (contentLengthList == null || contentLengthList.isEmpty()) {
+            contentLengthList = headers.get("content_length");
+        }
+        if (contentLengthList == null || contentLengthList.isEmpty()) {
+            contentLengthList = headers.get("ContentLength");
+        }
+        if (contentLengthList == null || contentLengthList.isEmpty()) {
+            contentLengthList = headers.get("contentlength");
+        }
+        if (contentLengthList == null || contentLengthList.isEmpty()) {
+            contentLengthList = headers.get("contentLength");
+        }
+        if (contentLengthList == null || contentLengthList.isEmpty()) {
+            contentLengthList = headers.get("CONTENTLENGTH");
+        }
+        if (contentLengthList == null || contentLengthList.isEmpty()) {
+            contentLengthList = headers.get("CONTENT-LENGTH");
+        }
+        if (contentLengthList == null || contentLengthList.isEmpty()) {
+            contentLengthList = headers.get("CONTENT_LENGTH");
+        }
         if (contentLengthList != null && !contentLengthList.isEmpty()) {
             long length = -1;
             for (String contentLength : contentLengthList) {
