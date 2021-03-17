@@ -11,7 +11,7 @@ public enum Method {
     /**
      * Http DELETE
      */
-    DELETE("DELETE", false),
+    DELETE("DELETE", true),
     /**
      * Http OPTIONS
      */
